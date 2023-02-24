@@ -7,7 +7,7 @@
 
 
 def find_all_roads(rows, cols, row=0, col=0):
-    """ Bottom cases:"""
+    """ BASE cases:"""
     if row == rows or col == cols:
         #  out of matrix
         return 0
