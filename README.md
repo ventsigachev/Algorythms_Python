@@ -1,6 +1,6 @@
 # Algorithms with Python 
 
-## Different Algorithms Solutions with Python
+## Different Algorithm Solutions with Python
 
 
 ### Includes:
