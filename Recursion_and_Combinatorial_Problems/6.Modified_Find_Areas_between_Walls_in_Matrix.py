@@ -6,8 +6,6 @@ Area of cells in which there is a path between every two cells.
 
 """
 
-positions = []
-
 
 class Area:
     def __init__(self, p):
@@ -64,6 +62,7 @@ def main():
 
 
 if __name__ == "__main__":
+    positions = []
     main()
 
 
