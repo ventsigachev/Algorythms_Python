@@ -62,15 +62,15 @@ if __name__ == "__main__":
 
 
 """
-    Possible Inputs:
-    
-    text, me, so, do, m, ran
-    somerandomtext
-    
-    Word, cruncher, cr, h, unch, c, r, un, ch, er
-    Wordcruncher
-    
-    tu, stu, p, i, d, pi, pid, s, pi
-    stupid
+Possible Inputs:
+
+text, me, so, do, m, ran
+somerandomtext
+
+Word, cruncher, cr, h, unch, c, r, un, ch, er
+Wordcruncher
+
+tu, stu, p, i, d, pi, pid, s, pi
+stupid
 
 """
