@@ -16,8 +16,8 @@ def iterative_search(nums, start, end, n):
         elif nums[mid] < n:
             start = mid + 1
         else:
-            return mid
-    return f"The searched number is not in the list"
+            return f"The searched number {n} is on {mid} index in array"
+    return f"The searched number {n} is not in the list"
 
 
 def main():
