@@ -23,7 +23,7 @@ def get_variations(e, p_i, p_c, ind=0, variations=None):
         return
 
     for p in p_i[ind]:
-        if p_c[p] == 0:
+        if not p_c[p]:
             continue
         variations.append(p)
         p_c[p] -= 1

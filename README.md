@@ -7,3 +7,4 @@
 
 #### Recursion
 #### Backtracking
+#### Searching and Sorting Algorithms
