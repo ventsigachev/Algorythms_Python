@@ -1,6 +1,11 @@
 """
     The aim of the program is to find all possible combinations,
-    for creating a string, from a given substrings
+    for creating a string, from a given substrings.
+        • On the first line, you will receive the strings (separated by comma and space ", ")
+        • There might be repeating elements in the input
+        • On the next line, you will receive the target string
+        • Print each of founded ways to form the target string
+
 """
 
 import re
@@ -22,3 +27,12 @@ for w in particles:
 
 print(particles_count)
 print(particles_indexes)
+
+
+"""
+    Possible Inputs:
+    
+    text, me, so, do, m, ran
+    somerandomtext
+
+"""
