@@ -52,3 +52,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+"""
+    The Graph is directed and has layers: Top to Bottom -> I layer 7; II layer 19, 21, 14; III layer 1, 12, 31, 6, 23 
+"""
