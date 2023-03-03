@@ -39,3 +39,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+"The Graph is with one component."

@@ -44,3 +44,4 @@ if __name__ == "__main__":
     main()
 
 "The Graph is directed, and the nodes is unordered. Nodes are printed, in order they moved out from the stack"
+"The Graph is with one component"
