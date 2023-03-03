@@ -42,3 +42,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+"Nodes are printed, in order they moved out from the stack"
