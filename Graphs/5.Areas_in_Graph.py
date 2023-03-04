@@ -87,3 +87,32 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+"""
+Possible Inputs:
+
+6
+8
+aacccaac
+baaaaccc
+baabaccc
+bbdaaccc
+ccdccccc
+ccdccccc
+
+3
+3
+aaa
+aaa
+aaa
+
+5
+9
+asssaadas
+adsdasdad
+sdsdadsas
+sdasdsdsa
+ssssasddd
+
+"""
