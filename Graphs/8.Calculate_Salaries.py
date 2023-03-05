@@ -15,6 +15,29 @@
 """
 
 
+def calculate_budget(employee, graph, budget=None):
+    if not budget:
+        # needed to calculate salary of manager
+        budget = [0] * len(graph)
+
+    if budget[employee]:
+        return budget[employee]
+
+    if not len(graph[employee]):
+        # this employee is not a manager
+        budget[employee] = 1
+        return 1
+
+    employee_salary = 0
+
+    for e in graph[employee]:
+        employee_salary += calculate_budget(e, graph, budget)
+
+    budget[employee] = employee_salary
+
+    return employee_salary
+
+
 def company_representation(employees, graph):
     if employees == 1:
         print("The company has only one employee.")
@@ -35,12 +58,20 @@ def main():
 
     for _ in range(employees):
         string = input()
-        
+
         managed_employees = [managed_employee for managed_employee, symbol in enumerate(string) if symbol == "Y"]
 
         graph.append(managed_employees)
 
     company_representation(employees, graph)
+
+    company_budget = 0
+
+    for employee in range(employees):
+        employee_salary = calculate_budget(employee, graph)
+        company_budget += employee_salary
+
+    print(f"\nTotal Company Expenses: {company_budget}")
 
 
 if __name__ == "__main__":
