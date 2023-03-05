@@ -4,6 +4,7 @@
     People who manage at least one employee are called managers.
     Each manager takes a salary which is equal to the sum of the salaries of their directly managed employees.
     Managers cannot manage directly or indirectly themselves. Some employees might have no manager.
+    The goal is to calculate the final budget.
 
     To solve the problem we will use list, as data structure, and Depth_First Search, to calculate salaries.
     The graph will be a list of lists, where index of the graph will represent the employee and the sub-list of the
@@ -12,6 +13,20 @@
     symbols. The symbols are either 'Y' or 'N', showing all employees that are managed by the current employee.
     The managers are the rows in the graph, and the managed employees are the colons.
 """
+
+
+def company_representation(employees, graph):
+    if employees == 1:
+        print("The company has only one employee.")
+        return
+
+    managers = {m: graph[m] for m in range(len(graph)) if len(graph[m])}
+
+    print(f"Company has {employees} workers, {len(managers)} of them are managers.\n")
+
+    for manager, employees in managers.items():
+        print(f"Manager {manager} managed employee {''.join([str(x) for x in employees])}" if len(employees) == 1
+              else f"Manager {manager} managed {' and '.join([str(x) for x in employees])} employees")
 
 
 def main():
@@ -28,7 +43,7 @@ def main():
 
         graph.append(managed_employees)
 
-    print(graph)
+    company_representation(employees, graph)
 
 
 if __name__ == "__main__":
