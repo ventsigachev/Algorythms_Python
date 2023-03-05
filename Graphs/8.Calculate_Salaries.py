@@ -10,11 +10,25 @@
     given index represents the managed employees, if any.
     If we have N employees, they will be indexed from 0 to N – 1. For each employee, you will be given a string with N
     symbols. The symbols are either 'Y' or 'N', showing all employees that are managed by the current employee.
+    The managers are the rows in the graph, and the managed employees are the colons.
 """
 
 
 def main():
-    pass
+    employees = int(input())
+    graph = []
+
+    for _ in range(employees):
+        string = input()
+        managed_employees = []
+
+        for index, symbol in enumerate(string):
+            if symbol == "Y":
+                managed_employees.append(index)
+
+        graph.append(managed_employees)
+
+    print(graph)
 
 
 if __name__ == "__main__":
