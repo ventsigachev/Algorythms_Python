@@ -25,8 +25,8 @@ def company_representation(employees, graph):
     print(f"Company has {employees} workers, {len(managers)} of them are managers.\n")
 
     for manager, employees in managers.items():
-        print(f"Manager {manager} managed employee {''.join([str(x) for x in employees])}" if len(employees) == 1
-              else f"Manager {manager} managed {' and '.join([str(x) for x in employees])} employees")
+        print(f"Manager {manager} manages employee {''.join([str(x) for x in employees])}" if len(employees) == 1
+              else f"Manager {manager} manages {' and '.join([str(x) for x in employees])} employees")
 
 
 def main():
@@ -35,11 +35,8 @@ def main():
 
     for _ in range(employees):
         string = input()
-        managed_employees = []
-
-        for managed_employee, symbol in enumerate(string):
-            if symbol == "Y":
-                managed_employees.append(managed_employee)
+        
+        managed_employees = [managed_employee for managed_employee, symbol in enumerate(string) if symbol == "Y"]
 
         graph.append(managed_employees)
 
