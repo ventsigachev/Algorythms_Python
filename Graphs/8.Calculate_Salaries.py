@@ -22,9 +22,9 @@ def main():
         string = input()
         managed_employees = []
 
-        for index, symbol in enumerate(string):
+        for managed_employee, symbol in enumerate(string):
             if symbol == "Y":
-                managed_employees.append(index)
+                managed_employees.append(managed_employee)
 
         graph.append(managed_employees)
 
