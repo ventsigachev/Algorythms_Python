@@ -32,10 +32,9 @@ def main():
 
     graph = {}
 
-    while True:
-        line = input()
-        if line == "End":
-            break
+    line = input()
+
+    while not line == 'End':
 
         node_a, node_b = line.split("-")
 
@@ -45,6 +44,8 @@ def main():
             graph[node_b] = []
 
         graph[node_a].append(node_b)
+
+        line = input()
 
     visited = []
 
