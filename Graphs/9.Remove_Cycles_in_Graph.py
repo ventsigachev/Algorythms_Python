@@ -28,6 +28,15 @@ def check_paths(start, end, graph):
     return end in visited
 
 
+def result_representation(res):
+    if len(res):
+        print("The Graph has one or more cycles. Edges to remove for making the graph acyclic:")
+        for s, e in res:
+            print(f"From {s} to {e}")
+        return
+    print("The Graph is acyclic")
+
+
 def main():
     n = int(input())
     graph = {}
@@ -55,14 +64,17 @@ def main():
         # this check returns boolean for path existence
         # if there is a path, graph is cycled, so remove option above persists
         if check_paths(start, end, graph):
-            print(start, end, sep=" - ")
+            result.append((start, end))
         # if there is no other path, return the above edge to graph
         else:
             graph[start].append(end)
             graph[end].append(start)
 
+    result_representation(result)
+
 
 if __name__ == "__main__":
+    result = []
     main()
 
 
