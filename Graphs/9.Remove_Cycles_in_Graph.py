@@ -12,6 +12,10 @@ def dfs(node, end, graph, visited):
 
     visited.add(node)
 
+    # to reduce recursion time
+    if node == end:
+        return
+
     for vertex in graph[node]:
         dfs(vertex, end, graph, visited)
 
@@ -40,6 +44,7 @@ def main():
 
     # let check for cycles by removing edges from graph
     for start, end in edges:
+        # skipping already checked edges
         if end not in graph[start] or start not in graph[end]:
             continue
 
