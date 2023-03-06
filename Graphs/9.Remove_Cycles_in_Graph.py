@@ -6,7 +6,15 @@
 
 
 def main():
-    pass
+    n = int(input())
+    graph = {}
+
+    for _ in range(n):
+        node, vertex = input().split(" -> ")
+        nodes = vertex.split()
+        graph[node] = nodes
+
+    print(graph)
 
 
 if __name__ == "__main__":
