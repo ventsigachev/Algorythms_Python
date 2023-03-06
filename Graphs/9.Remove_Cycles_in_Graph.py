@@ -6,6 +6,24 @@
 """
 
 
+def dfs(node, end, graph, visited):
+    if node in visited:
+        return
+
+    visited.add(node)
+
+    for vertex in graph[node]:
+        dfs(vertex, end, graph, visited)
+
+
+def check_paths(start, end, graph):
+    visited = set()
+
+    dfs(start, end, graph, visited)
+    
+    return end in visited
+
+
 def main():
     n = int(input())
     graph = {}
@@ -20,8 +38,23 @@ def main():
 
     edges = sorted(edges, key=lambda x: (x[0], x[1]))
 
-    print(graph)
-    print(edges)
+    # let check for cycles by removing edges from graph
+    for start, end in edges:
+        if end not in graph[start] or start not in graph[end]:
+            continue
+
+        graph[start].remove(end)
+        graph[end].remove(start)
+
+        # now check if there is a different path from start to end in graph, using dfs
+        # this check returns boolean for path existence
+        # if there is a path, graph is cycled, so remove option above persists
+        if check_paths(start, end, graph):
+            print(start, end, sep=" - ")
+        # if there is no other path, return the above edge to graph
+        else:
+            graph[start].append(end)
+            graph[end].append(start)
 
 
 if __name__ == "__main__":
