@@ -2,19 +2,26 @@
     You are given an undirected multi-graph. Remove a minimal number of edges to make the graph acyclic (to break all
     cycles). As a result, print the number of edges removed and the removed edges. If several edges can be removed to
     break a certain cycle, remove the smallest of them in ascendant order.
+    For ability to remove edges, create a list of tuples, sorted in ascendant order.
 """
 
 
 def main():
     n = int(input())
     graph = {}
+    edges = []
 
     for _ in range(n):
         node, vertex = input().split(" -> ")
         nodes = vertex.split()
         graph[node] = nodes
+        for edge in nodes:
+            edges.append((node, edge))
+
+    edges = sorted(edges, key=lambda x: (x[0], x[1]))
 
     print(graph)
+    print(edges)
 
 
 if __name__ == "__main__":
