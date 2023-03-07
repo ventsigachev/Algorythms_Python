@@ -15,6 +15,12 @@ def dfs(node, graph, visited):
         dfs(c, graph, visited)
 
 
+def result_representations(ll):
+    result = sorted(ll, key=lambda x: (x[0], x[1]))
+    print("Important Edges are:")
+    [print(f"From {s} to {e}") for s, e in result]
+
+
 def main():
     nodes = int(input())
     edges = int(input())
@@ -48,7 +54,7 @@ def main():
         graph[start].append(end)
         graph[end].append(start)
 
-    print(important_edges)
+    result_representations(important_edges)
 
 
 if __name__ == "__main__":
