@@ -5,6 +5,16 @@
 """
 
 
+def dfs(node, graph, visited):
+    if visited[node]:
+        return
+
+    visited[node] = True
+
+    for c in graph[node]:
+        dfs(c, graph, visited)
+
+
 def main():
     nodes = int(input())
     edges = int(input())
@@ -13,6 +23,7 @@ def main():
     [graph.append([]) for _ in range(nodes)]
 
     edges_list = set()
+    important_edges = []
 
     for _ in range(edges):
         start, end = [int(x) for x in input().split(" - ")]
@@ -21,8 +32,23 @@ def main():
         # adding edges in ascendant order
         edges_list.add((min(start, end), max(start, end)))
 
-    print(graph)
-    print(edges_list)
+    for start, end in edges_list:
+        graph[start].remove(end)
+        graph[end].remove(start)
+
+        # after removing edge, trying to reach every node in the graph, using dfs
+        visited = [False] * nodes
+
+        dfs(0, graph, visited)
+
+        if not all(visited):
+            important_edges.append((start, end))
+
+        # returning the edge back in graph for next recursion
+        graph[start].append(end)
+        graph[end].append(start)
+
+    print(important_edges)
 
 
 if __name__ == "__main__":
