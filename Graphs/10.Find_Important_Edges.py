@@ -6,7 +6,23 @@
 
 
 def main():
-    pass
+    nodes = int(input())
+    edges = int(input())
+
+    graph = []
+    [graph.append([]) for _ in range(nodes)]
+
+    edges_list = set()
+
+    for _ in range(edges):
+        start, end = [int(x) for x in input().split(" - ")]
+        graph[start].append(end)
+        graph[end].append(start)
+        # adding edges in ascendant order
+        edges_list.add((min(start, end), max(start, end)))
+
+    print(graph)
+    print(edges_list)
 
 
 if __name__ == "__main__":
