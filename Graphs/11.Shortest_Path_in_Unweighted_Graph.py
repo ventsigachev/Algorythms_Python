@@ -1,8 +1,8 @@
 """
     You will be given a graph from the console.
     Your task is to find the shortest path and print it back on the console.
-    The first line will be the number of Nodes - N the second one the number of Edges - E,
-    then on each E line the edge in form {destination} – {source}.
+    The first line will be the number of Nodes - N, the second one - the number of Edges - E,
+    then on each E line - the edge in form {destination} – {source}.
     On the last two lines, you will read the start node and the end node.
 """
 
