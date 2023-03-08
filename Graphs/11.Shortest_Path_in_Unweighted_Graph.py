@@ -4,11 +4,26 @@
     The first line will be the number of Nodes - N, the second one - the number of Edges - E,
     then on each E line - the edge in form {destination} – {source}.
     On the last two lines, you will read the start node and the end node.
+
+    The better solution is to use breath-first search(BTF).
 """
 
 
 def main():
-    pass
+    nodes = int(input())
+    edges = int(input())
+
+    graph = []
+    [graph.append([]) for _ in range(nodes + 1)]
+
+    for _ in range(edges):
+        source, destination = [int(x) for x in input().split()]
+        graph[source].append(destination)
+
+    start = int(input())
+    end = int(input())
+
+    print(graph)
 
 
 if __name__ == "__main__":
