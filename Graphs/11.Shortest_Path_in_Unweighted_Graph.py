@@ -5,9 +5,37 @@
     then on each E line - the edge in form {destination} – {source}.
     On the last two lines, you will read the start node and the end node.
 
-    The better solution is to use breath-first search(BTF).
+    The better solution is to use breadth-first search(BTF).
 """
 from collections import deque
+
+
+def result_representation(parent_nodes, end):
+    path = []
+    node = end
+
+    while node:
+        path.append(node)
+        node = parent_nodes[node]
+
+    print("Shortest path is: ", end='')
+    print(*path[::-1])
+    print(f"Visited nodes number is {len(path) - 2}")
+
+
+def bfs(queue, graph, parent_nodes, end, visited):
+    while queue:
+        node = queue.popleft()
+        if node == end:
+            break
+        for n in graph[node]:
+            if visited[n]:
+                continue
+            visited[n] = True
+            queue.append(n)
+            parent_nodes[n] = node
+
+    result_representation(parent_nodes, end)
 
 
 def main():
@@ -30,18 +58,7 @@ def main():
     queue = deque([start])
     visited[start] = True
 
-    while queue:
-        node = queue.popleft()
-        if node == end:
-            break
-        for n in graph[node]:
-            if visited[n]:
-                continue
-            visited[n] = True
-            queue.append(n)
-            parent_nodes[n] = node
-
-    print(parent_nodes)
+    bfs(queue, graph, parent_nodes, end, visited)
 
 
 if __name__ == "__main__":
