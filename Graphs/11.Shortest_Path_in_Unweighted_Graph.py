@@ -7,6 +7,7 @@
 
     The better solution is to use breath-first search(BTF).
 """
+from collections import deque
 
 
 def main():
@@ -23,7 +24,24 @@ def main():
     start = int(input())
     end = int(input())
 
-    print(graph)
+    visited = [False] * (nodes + 1)
+    parent_nodes = [None] * (nodes + 1)
+
+    queue = deque([start])
+    visited[start] = True
+
+    while queue:
+        node = queue.popleft()
+        if node == end:
+            break
+        for n in graph[node]:
+            if visited[n]:
+                continue
+            visited[n] = True
+            queue.append(n)
+            parent_nodes[n] = node
+
+    print(parent_nodes)
 
 
 if __name__ == "__main__":
