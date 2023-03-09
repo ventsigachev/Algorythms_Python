@@ -14,7 +14,7 @@
         version of Dijkstra’s algorithm using a priority queue.
 
         Input
-            • On the first, you will receive an integer – e – number of edges.
+            • On the first line you will receive an integer – e – number of edges.
             • On the next e lines, you will receive an edge in the following format: "{start}, {end}, {weight}".
             • On the next line, you will receive a start node.
             • On the last line, you will receive an end node.
@@ -27,7 +27,26 @@
 
 
 def main():
-    pass
+    class Edge:
+        def __init__(self, source, destination, weight):
+            self.source = source
+            self.destination = destination
+            self.weight = weight
+
+    edges = int(input())
+    graph = {}
+
+    for _ in range(edges):
+        source, destination, weight = input().split(', ')
+        if source not in graph:
+            graph[source] = []
+        if destination not in graph:
+            graph[destination] = []
+
+        graph[source].append(Edge(source, destination, weight))
+
+    start = int(input())
+    end = int(input())
 
 
 if __name__ == "__main__":
