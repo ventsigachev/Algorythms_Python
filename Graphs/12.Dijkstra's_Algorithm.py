@@ -28,10 +28,10 @@
 
 def main():
     class Edge:
-        def __init__(self, source, destination, weight):
-            self.source = source
-            self.destination = destination
-            self.weight = weight
+        def __init__(self, s, d, w):
+            self.s = s
+            self.d = d
+            self.w = w
 
     edges = int(input())
     graph = {}
