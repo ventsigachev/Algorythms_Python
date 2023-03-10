@@ -26,6 +26,19 @@
 """
 
 from queue import PriorityQueue
+from collections import deque
+
+
+def result(distance, parent, end):
+    path = deque()
+    n = end
+
+    while n is not None:
+        path.appendleft(n)
+        n = parent[n]
+
+    print("There is no path" if distance[end] == float('inf') else distance[end])
+    print(*path if len(path) > 1 else '')
 
 
 def main():
@@ -71,7 +84,7 @@ def main():
                 parent[edge.d] = node
                 pq.put((new_distance, edge.d))
 
-    print(distance[end])
+    result(distance, parent, end)
 
 
 if __name__ == "__main__":
