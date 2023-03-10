@@ -48,10 +48,10 @@ def main():
     start = int(input())
     end = int(input())
 
-    max_node = max(graph.keys())
-    distance = [0] * max_node + 1
-    parent = [None] * max_node + 1
-    
+    max_node = int(max(graph.keys()))
+    distance = [0] * (max_node + 1)
+    parent = [None] * (max_node + 1)
+
 
 if __name__ == "__main__":
     main()
