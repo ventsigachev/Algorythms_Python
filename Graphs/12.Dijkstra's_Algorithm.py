@@ -37,8 +37,25 @@ def result(distance, parent, end):
         path.appendleft(n)
         n = parent[n]
 
-    print("There is no path" if distance[end] == float('inf') else distance[end])
-    print(*path if len(path) > 1 else '')
+    print("There is no path" if distance[end] == float('inf') else f"The shortest distance is: {distance[end]}")
+    print(f"The shortest path is thru nodes: {' '.join([str(x) for x in path])}" if len(path) > 1 else '')
+
+
+def dijkstras_algorithm(graph, parent, distance, start, end):
+    pq = PriorityQueue()
+
+    pq.put((0, start))
+
+    while not pq.empty():
+        min_distance, node = pq.get()
+        if node == end:
+            break
+        for edge in graph[node]:
+            new_distance = min_distance + edge.w
+            if new_distance < distance[edge.d]:
+                distance[edge.d] = new_distance
+                parent[edge.d] = node
+                pq.put((new_distance, edge.d))
 
 
 def main():
@@ -69,21 +86,7 @@ def main():
 
     distance[start] = 0
 
-    pq = PriorityQueue()
-
-    pq.put((0, start))
-
-    while not pq.empty():
-        min_distance, node = pq.get()
-        if node == end:
-            break
-        for edge in graph[node]:
-            new_distance = min_distance + edge.w
-            if new_distance < distance[edge.d]:
-                distance[edge.d] = new_distance
-                parent[edge.d] = node
-                pq.put((new_distance, edge.d))
-
+    dijkstras_algorithm(graph, parent, distance, start, end)
     result(distance, parent, end)
 
 
