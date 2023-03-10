@@ -49,7 +49,7 @@ def main():
     end = int(input())
 
     max_node = int(max(graph.keys()))
-    distance = [0] * (max_node + 1)
+    distance = [float('inf')] * (max_node + 1)
     parent = [None] * (max_node + 1)
 
 
