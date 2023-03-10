@@ -25,6 +25,8 @@
 
 """
 
+from queue import PriorityQueue
+
 
 def main():
     class Edge:
@@ -37,7 +39,7 @@ def main():
     graph = {}
 
     for _ in range(edges):
-        source, destination, weight = input().split(', ')
+        source, destination, weight = [int(x) for x in input().split(', ')]
         if source not in graph:
             graph[source] = []
         if destination not in graph:
@@ -48,9 +50,28 @@ def main():
     start = int(input())
     end = int(input())
 
-    max_node = int(max(graph.keys()))
+    max_node = max(graph.keys())
     distance = [float('inf')] * (max_node + 1)
     parent = [None] * (max_node + 1)
+
+    distance[start] = 0
+
+    pq = PriorityQueue()
+
+    pq.put((0, start))
+
+    while not pq.empty():
+        min_distance, node = pq.get()
+        if node == end:
+            break
+        for edge in graph[node]:
+            new_distance = min_distance + edge.w
+            if new_distance < distance[edge.d]:
+                distance[edge.d] = new_distance
+                parent[edge.d] = node
+                pq.put((new_distance, edge.d))
+
+    print(distance[end])
 
 
 if __name__ == "__main__":
