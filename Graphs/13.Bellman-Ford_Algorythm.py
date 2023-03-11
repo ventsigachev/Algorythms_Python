@@ -4,6 +4,15 @@
         ▪ Named after Richard Bellman and Lester Ford Jr., who published it in 1958 and 1956, respectively
         ▪ Can detect and report negative cycles
         ▪ Time complexity: O(VE) -> (Vertices * Edges)
+
+        ▪ The Bellman-Ford algorithm will do V - 1 iterations, where V is the number of vertices
+        ▪ For each iteration:
+            ▪ For each edge in the graph (u, v, w)
+            ▪ If d[v] > d[u] + w(u, v) and d[v] is visited before
+            ▪ Update d[v] with d[u] + w(u, v)
+            ▪ Update the prev[v] = u
+        ▪ Run the algorithm one more time for each edge
+        ▪ If you can update any d[v] there is a negative cycle
 """
 
 from collections import deque
