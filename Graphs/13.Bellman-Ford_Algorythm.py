@@ -8,7 +8,26 @@
 
 
 def main():
-    pass
+
+    class Edge:
+        def __init__(self, s, d, w):
+            self.s = s
+            self.d = d
+            self.w = w
+
+    nodes = int(input())
+    edges = int(input())
+
+    graph = []
+
+    for _ in range(edges):
+        source, destination, weight = [int(x) for x in input().split()]
+        graph.append(Edge(source, destination, weight))
+
+    start = int(input())
+    end = int(input())
+
+    print(graph)
 
 
 if __name__ == "__main__":
