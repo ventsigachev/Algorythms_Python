@@ -8,11 +8,20 @@
 
 
 def bellman_ford(graph, nodes, distance, parent):
+    global is_negative
+
     for _ in range(nodes - 1):
         for edge in graph:
             if not distance[edge.s] == float('inf') and distance[edge.s] + edge.w < distance[edge.d]:
                 distance[edge.d] = distance[edge.s] + edge.w
                 parent[edge.d] = edge.s
+
+    # checking for negative cycle
+    for edge in graph:
+        dist = distance[edge.s] + edge.w
+        if dist < distance[edge.d]:
+            print("Negative cycle detected")
+            is_negative = True
 
 
 def main():
@@ -41,10 +50,11 @@ def main():
 
     bellman_ford(graph, nodes, distance, parent)
 
-    print(distance)
+    print(distance, is_negative)
 
 
 if __name__ == "__main__":
+    is_negative = False
     main()
 
 
