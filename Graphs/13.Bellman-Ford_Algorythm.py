@@ -7,6 +7,14 @@
 """
 
 
+def bellman_ford(graph, nodes, distance, parent):
+    for _ in range(nodes - 1):
+        for edge in graph:
+            if not distance[edge.s] == float('inf') and distance[edge.s] + edge.w < distance[edge.d]:
+                distance[edge.d] = distance[edge.s] + edge.w
+                parent[edge.d] = edge.s
+
+
 def main():
 
     class Edge:
@@ -27,7 +35,13 @@ def main():
     start = int(input())
     end = int(input())
 
-    print(graph)
+    distance = [float('inf')] * (nodes + 1)
+    distance[start] = 0
+    parent = [None] * (nodes + 1)
+
+    bellman_ford(graph, nodes, distance, parent)
+
+    print(distance)
 
 
 if __name__ == "__main__":
