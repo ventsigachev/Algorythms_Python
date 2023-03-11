@@ -6,6 +6,24 @@
         ▪ Time complexity: O(VE) -> (Vertices * Edges)
 """
 
+from collections import deque
+
+
+def result(distance, parent, end):
+    if is_negative:
+        print("Negative Cycle Detected")
+        return
+
+    path = deque()
+    n = end
+
+    while n is not None:
+        path.appendleft(n)
+        n = parent[n]
+
+    print(f"The shortest path is thru nodes: {' -> '.join([str(s) for s in path])}, "
+          f"with shortest distance: {distance[end]}")
+
 
 def bellman_ford(graph, nodes, distance, parent):
     global is_negative
@@ -20,8 +38,8 @@ def bellman_ford(graph, nodes, distance, parent):
     for edge in graph:
         dist = distance[edge.s] + edge.w
         if dist < distance[edge.d]:
-            print("Negative cycle detected")
             is_negative = True
+        return
 
 
 def main():
@@ -49,8 +67,7 @@ def main():
     parent = [None] * (nodes + 1)
 
     bellman_ford(graph, nodes, distance, parent)
-
-    print(distance, is_negative)
+    result(distance, parent, end)
 
 
 if __name__ == "__main__":
