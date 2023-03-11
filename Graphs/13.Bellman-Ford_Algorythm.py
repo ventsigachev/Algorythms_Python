@@ -3,7 +3,7 @@
         ▪ Computes the shortest paths from a source vertex to all other vertices in a weighted digraph
         ▪ Named after Richard Bellman and Lester Ford Jr., who published it in 1958 and 1956, respectively
         ▪ Can detect and report negative cycles
-        ▪ Time complexity: O(VE)
+        ▪ Time complexity: O(VE) -> (Vertices * Edges)
 """
 
 
