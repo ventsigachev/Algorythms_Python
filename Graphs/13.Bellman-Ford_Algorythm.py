@@ -100,4 +100,6 @@ if __name__ == "__main__":
 1
 4
 
+If you want to visualize the graph go to https://csacademy.com/app/graph_editor/ and paste all the edges in Graph Data
+column, in the upper left corner.
 """
