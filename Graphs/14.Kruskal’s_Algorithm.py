@@ -21,7 +21,21 @@
 
 
 def main():
-    pass
+
+    class Edge:
+        def __init__(self, f, s, w):
+            self.f = f
+            self.s = s
+            self.w = w
+
+    edges = int(input())
+    graph = []
+
+    for _ in range(edges):
+        first, second, weight = [int(e) for e in input().split(', ')]
+        graph.append(Edge(first, second, weight))
+
+    print(graph)
 
 
 if __name__ == "__main__":
