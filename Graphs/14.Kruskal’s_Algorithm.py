@@ -20,6 +20,30 @@
 """
 
 
+def find_root(parent, root):
+    while not root == parent[root]:
+        root = parent[root]
+
+    return root
+
+
+def algoritm(graph, max_node):
+
+    parent = [num for num in range(max_node + 1)]
+    forest = []
+    d = 0
+
+    for e in sorted(graph, key=lambda x: x.w):
+        first_root = find_root(parent, e.f)
+        second_root = find_root(parent, e.s)
+        if not first_root == second_root:
+            parent[first_root] = second_root
+            forest.append((e.f, e.s))
+            d += e.w
+
+    return forest, d
+
+
 def main():
 
     class Edge:
@@ -30,12 +54,17 @@ def main():
 
     edges = int(input())
     graph = []
+    nodes_number = 0
 
     for _ in range(edges):
         first, second, weight = [int(e) for e in input().split(', ')]
         graph.append(Edge(first, second, weight))
 
-    print(graph)
+        # to find nodes number
+        nodes_number = max(first, second, nodes_number)
+        
+    path, distance = algoritm(graph, nodes_number)
+    print(path, distance)
 
 
 if __name__ == "__main__":
