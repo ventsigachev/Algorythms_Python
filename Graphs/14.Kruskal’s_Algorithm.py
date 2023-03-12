@@ -12,6 +12,7 @@
     ▪ S = all edges, ordered by weight
     ▪ F={}
     ▪ Take the smallest edge. If The edge connects different trees → add it to the forest.
+    ▪ Time complexity: O(|E| * log* |E|) -> O(n * log(n))
 
     Input
     • On the first line you will receive e – an integer – number of edges that you have to read.
@@ -44,6 +45,13 @@ def algoritm(graph, max_node):
     return forest, d
 
 
+def result(path, distance):
+    for a, b in sorted(path, key=lambda x: (x[0], x[1])):
+        print(f"{a}->{b}", end=' ')
+
+    print(f"\nThe minimum distance is: {distance}")
+
+
 def main():
 
     class Edge:
@@ -62,9 +70,9 @@ def main():
 
         # to find nodes number
         nodes_number = max(first, second, nodes_number)
-        
+
     path, distance = algoritm(graph, nodes_number)
-    print(path, distance)
+    result(path, distance)
 
 
 if __name__ == "__main__":
