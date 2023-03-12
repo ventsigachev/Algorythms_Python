@@ -23,7 +23,27 @@
 
 
 def main():
-    pass
+
+    class Edge:
+        def __init__(self, f, s, w):
+            self.f = f
+            self.s = s
+            self.w = w
+
+    edges = int(input())
+    graph = {}
+
+    for _ in range(edges):
+        first, second, weight = [int(x) for x in input().split(', ')]
+        edge = Edge(first, second, weight)
+        if first not in graph:
+            graph[first] = []
+        if second not in graph:
+            graph[second] = []
+        graph[first].append(edge)
+        graph[second].append(edge)
+
+    print(graph)
 
 
 if __name__ == "__main__":
