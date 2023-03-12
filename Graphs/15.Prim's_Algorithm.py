@@ -21,6 +21,39 @@
 
 """
 
+from queue import PriorityQueue
+
+
+def prim(graph):
+    tree = set()
+    tree_edges = []
+
+    for node in graph:
+        if node in tree:
+            continue
+        tree.add(node)
+        pq = PriorityQueue()
+        for edge in graph[node]:
+            pq.put(edge)
+        while not pq.empty():
+            min_edge = pq.get()
+            prov_node = None
+
+            if min_edge.f in tree and min_edge.s not in tree:
+                prov_node = min_edge.s
+            if min_edge.f not in tree and min_edge.s in tree:
+                prov_node = min_edge.s
+
+            if not prov_node:
+                continue
+            tree.add(prov_node)
+            tree_edges.append(min_edge)
+
+            for e in graph[prov_node]:
+                pq.put(e)
+    for e in tree_edges:
+        print(f"({e.f} - {e.s})")
+
 
 def main():
 
@@ -29,6 +62,9 @@ def main():
             self.f = f
             self.s = s
             self.w = w
+
+        def __gt__(self, other):
+            return self.w > other.w
 
     edges = int(input())
     graph = {}
@@ -43,7 +79,7 @@ def main():
         graph[first].append(edge)
         graph[second].append(edge)
 
-    print(graph)
+    prim(graph)
 
 
 if __name__ == "__main__":
