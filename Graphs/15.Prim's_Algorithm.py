@@ -24,6 +24,14 @@
 from queue import PriorityQueue
 
 
+def result(tree_edges):
+    distance = 0
+    for e in tree_edges:
+        distance += e.w
+        print(f"({e.f} - {e.s})", end=' ')
+    print(f"\nThe minimal distance is: {distance}")
+
+
 def prim(graph):
     tree = set()
     tree_edges = []
@@ -51,8 +59,8 @@ def prim(graph):
 
             for e in graph[prov_node]:
                 pq.put(e)
-    for e in tree_edges:
-        print(f"({e.f} - {e.s})")
+
+    result(tree_edges)
 
 
 def main():
