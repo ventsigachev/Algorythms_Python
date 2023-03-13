@@ -8,7 +8,27 @@
 
 
 def main():
-    pass
+    nodes = int(input())
+    edges = int(input())
+
+    graph = []
+    [graph.append(None) for _ in range(nodes + 1)]
+
+    for _ in range(nodes):
+        parent, children = input().split(':')
+        parent = int(parent)
+        children = list(map(int, children.split())) if children else ""
+        if children:
+            graph[parent] = children
+
+    print(graph)
+    
+    pairs = []
+    for _ in range(edges):
+        a, b = input().split('-')
+        pairs.append((int(a), int(b)))
+
+    print(pairs)
 
 
 if __name__ == "__main__":
