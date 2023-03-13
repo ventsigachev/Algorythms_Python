@@ -13,44 +13,45 @@ def bfs(graph, pairs):
     for pair in pairs:
         source, destination = pair
         queue = deque([source])
-        visited = [False] * len(graph)
-        visited[source] = True
-        parent = [0] * len(graph)
+        visited = {source}
+        parent = {source: None}
 
         while queue:
             node = queue.popleft()
             if node == destination:
                 break
             for child in graph[node]:
-                if not child or visited[child]:
+                if child in visited:
                     continue
 
                 queue.append(child)
-                visited[child] = True
+                visited.add(child)
                 parent[child] = node
 
         path = deque()
         node = destination
+
         while node:
+            if node not in parent:
+                break
             path.appendleft(node)
             node = parent[node]
 
-        print(path)
+        print(f"From {source} to {destination}, the path is: {', '.join([str(x) for x in path])}" if len(path) > 1 else
+              f"From {source} to {destination} there is no path")
 
 
 def main():
     nodes = int(input())
     edges = int(input())
 
-    graph = []
-    [graph.append([]) for _ in range(nodes + 1)]
+    graph = {}
 
     for _ in range(nodes):
         parent, children = input().split(':')
         parent = int(parent)
-        children = list(map(int, children.split())) if children else ""
-        if children:
-            graph[parent] = children
+        children = list(map(int, children.split())) if children else []
+        graph[parent] = children
 
     pairs = []
     for _ in range(edges):
