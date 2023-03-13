@@ -5,6 +5,37 @@
     On the second line, you will get P, the number of pairs between which to find the shortest distance.
     On the next N lines will be the edges of the graph and on the next P lines, the pairs.
 """
+from collections import deque
+
+
+def bfs(graph, pairs):
+
+    for pair in pairs:
+        source, destination = pair
+        queue = deque([source])
+        visited = [False] * len(graph)
+        visited[source] = True
+        parent = [0] * len(graph)
+
+        while queue:
+            node = queue.popleft()
+            if node == destination:
+                break
+            for child in graph[node]:
+                if not child or visited[child]:
+                    continue
+
+                queue.append(child)
+                visited[child] = True
+                parent[child] = node
+
+        path = deque()
+        node = destination
+        while node:
+            path.appendleft(node)
+            node = parent[node]
+
+        print(path)
 
 
 def main():
@@ -12,7 +43,7 @@ def main():
     edges = int(input())
 
     graph = []
-    [graph.append(None) for _ in range(nodes + 1)]
+    [graph.append([]) for _ in range(nodes + 1)]
 
     for _ in range(nodes):
         parent, children = input().split(':')
@@ -21,14 +52,12 @@ def main():
         if children:
             graph[parent] = children
 
-    print(graph)
-    
     pairs = []
     for _ in range(edges):
         a, b = input().split('-')
         pairs.append((int(a), int(b)))
 
-    print(pairs)
+    bfs(graph, pairs)
 
 
 if __name__ == "__main__":
