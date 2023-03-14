@@ -13,6 +13,19 @@
     In this case I use PriorityQueue with negative numbers, to get the max number from the queue.
 """
 from queue import PriorityQueue
+from collections import deque
+
+
+def result(parent, priority, end):
+
+    path = deque()
+    node = end
+
+    while node is not None:
+        path.appendleft(node)
+        node = parent[node]
+
+    print(f'The most reliable path is: {" -> ".join([str(s) for s in path])}, with reliability of {priority[end]:.2f}%')
 
 
 def algorithm(graph, start, end, nodes):
@@ -34,6 +47,8 @@ def algorithm(graph, start, end, nodes):
                 priority[child] = n_reliability
                 parent[child] = node
                 pq.put((-n_reliability, child))
+
+    result(parent, priority, end)
 
 
 def main():
