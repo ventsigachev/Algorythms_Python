@@ -13,7 +13,28 @@
 
 
 def main():
-    pass
+
+    class Edge:
+        def __init__(self, f, s, w):
+            self.f = f
+            self.s = s
+            self.w = w
+
+    nodes = int(input())
+    edges = int(input())
+
+    graph = []
+    [graph.append([]) for _ in range(nodes)]
+
+    for _ in range(edges):
+        first, second, weight = [int(x) for x in input().split()]
+        edge = Edge(first, second, weight)
+        graph[first].append(edge)
+
+    start = int(input())
+    end = int(input())
+
+    print(graph)
 
 
 if __name__ == "__main__":
