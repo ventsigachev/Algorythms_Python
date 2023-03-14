@@ -9,7 +9,31 @@
     • On the next e lines, you will receive edges in the following format: "{first} {second} {weight}".
     • On the next line, you will receive an integer – source – starting of the path.
     • On the last line, you will receive an integer – destination – end of the path.
+
+    In this case I use PriorityQueue with negative numbers, to get the max number from the queue.
 """
+from queue import PriorityQueue
+
+
+def algorithm(graph, start, end, nodes):
+    pq = PriorityQueue()
+    pq.put((-100, start))
+
+    priority = [float('-inf')] * nodes
+    priority[start] = 100
+    parent = [None] * nodes
+
+    while not pq.empty():
+        max_reliability, node = pq.get()
+        if node == end:
+            break
+        for edge in graph[node]:
+            child = edge.s if edge.f == node else edge.f
+            n_reliability = -max_reliability * edge.w / 100
+            if n_reliability > priority[child]:
+                priority[child] = n_reliability
+                parent[child] = node
+                pq.put((-n_reliability, child))
 
 
 def main():
@@ -35,7 +59,7 @@ def main():
     start = int(input())
     end = int(input())
 
-    print(graph)
+    algorithm(graph, start, end, nodes)
 
 
 if __name__ == "__main__":
