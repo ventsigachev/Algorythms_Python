@@ -30,6 +30,7 @@ def main():
         first, second, weight = [int(x) for x in input().split()]
         edge = Edge(first, second, weight)
         graph[first].append(edge)
+        graph[second].append(edge)
 
     start = int(input())
     end = int(input())
