@@ -8,6 +8,12 @@
 """
 
 
+def find_root(parent, node):
+    while not node == parent[node]:
+        node = parent[node]
+    return node
+
+
 def main():
 
     nodes = int(input())
@@ -19,7 +25,19 @@ def main():
         first, second, cost = [int(x) for x in input().split(" - ")]
         graph.append((first, second, cost))
 
-    print(graph)
+    parent = [num for num in range(nodes)]
+    total_cost = 0
+
+    for f, s, c in sorted(graph, key=lambda x: x[2]):
+        first_root = find_root(parent, f)
+        second_root = find_root(parent, s)
+
+        if first_root == second_root:
+            continue
+        parent[first_root] = second_root
+        total_cost += c
+
+    print(f"Total cost is: {total_cost}")
 
 
 if __name__ == "__main__":
