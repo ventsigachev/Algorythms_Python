@@ -9,7 +9,17 @@
 
 
 def main():
-    pass
+
+    nodes = int(input())
+    edges = int(input())
+
+    graph = []
+
+    for _ in range(edges):
+        first, second, cost = [int(x) for x in input().split(" - ")]
+        graph.append((first, second, cost))
+
+    print(graph)
 
 
 if __name__ == "__main__":
