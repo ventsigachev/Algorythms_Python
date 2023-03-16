@@ -12,7 +12,17 @@
 
 
 def main():
-    pass
+    nodes = int(input())
+    edges = int(input())
+
+    graph = []
+
+    for _ in range(edges):
+        source, destination, weight = [int(x) for x in input().split()]
+        graph.append((source, destination, weight))
+
+    start = int(input())
+    end = int(input())
 
 
 if __name__ == "__main__":
