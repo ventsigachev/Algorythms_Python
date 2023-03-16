@@ -11,6 +11,24 @@
 """
 
 
+def algorithm(nodes, graph, start, end):
+
+    distances = [float('inf')] * (nodes + 1)
+    distances[start] = 0
+    parents = [None] * (nodes + 1)
+
+    for _ in range(nodes - 1):
+        for s, d, w in graph:
+            if distances[s] == float('inf'):
+                continue
+            destination_node_distance = distances[s] + w
+            if destination_node_distance < distances[d]:
+                distances[d] = destination_node_distance
+                parents[d] = s
+
+    print(distances[end])
+
+
 def main():
     nodes = int(input())
     edges = int(input())
@@ -23,6 +41,8 @@ def main():
 
     start = int(input())
     end = int(input())
+
+    algorithm(nodes, graph, start, end)
 
 
 if __name__ == "__main__":
