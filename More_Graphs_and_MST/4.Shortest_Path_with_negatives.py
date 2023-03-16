@@ -11,6 +11,22 @@
 """
 
 
+def results(parents, distances, end):
+    if is_negative:
+        print("There is a negative cycle in the graph")
+        return
+
+    path = []
+    node = end
+
+    while node is not None:
+        path.append(node)
+        node = parents[node]
+
+    print(f"The shortest distance in graph is {distances[end]}, thru {' -> '.join([str(s) for s in reversed(path)])} "
+          f"nodes")
+
+
 def algorithm(nodes, graph, start, end):
 
     distances = [float('inf')] * (nodes + 1)
@@ -28,11 +44,11 @@ def algorithm(nodes, graph, start, end):
                 parents[d] = s
 
     for s, d, w in graph:
-        d_n_d = distances[d] + w
+        d_n_d = distances[s] + w
         if d_n_d < distances[d]:
             is_negative = True
 
-    print(is_negative)
+    results(parents, distances, end)
 
 
 def main():
