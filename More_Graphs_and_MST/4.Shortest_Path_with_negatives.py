@@ -16,6 +16,7 @@ def algorithm(nodes, graph, start, end):
     distances = [float('inf')] * (nodes + 1)
     distances[start] = 0
     parents = [None] * (nodes + 1)
+    global is_negative
 
     for _ in range(nodes - 1):
         for s, d, w in graph:
@@ -26,7 +27,12 @@ def algorithm(nodes, graph, start, end):
                 distances[d] = destination_node_distance
                 parents[d] = s
 
-    print(distances[end])
+    for s, d, w in graph:
+        d_n_d = distances[d] + w
+        if d_n_d < distances[d]:
+            is_negative = True
+
+    print(is_negative)
 
 
 def main():
@@ -46,6 +52,7 @@ def main():
 
 
 if __name__ == "__main__":
+    is_negative = False
     main()
 
 
