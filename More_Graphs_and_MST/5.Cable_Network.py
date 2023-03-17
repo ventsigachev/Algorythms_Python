@@ -16,7 +16,35 @@
 
 
 def main():
-    pass
+
+    class Edge:
+        def __init__(self, f, s, w):
+            self.f = f
+            self.s = s
+            self.w = w
+
+        def __gt__(self, other):
+            return self.w > other.w
+
+    budget = int(input())
+    nodes = int(input())
+    edges = int(input())
+
+    graph = []
+    [graph.append([]) for _ in range(nodes)]
+    tree = set()
+
+    for _ in range(edges):
+        edge = input().split()
+        first, second, weight = int(edge[0]), int(edge[1]), int(edge[2])
+        graph[first].append(Edge(first, second, weight))
+        graph[second].append(Edge(first, second, weight))
+
+        if len(edge) == 4:
+            tree.add(first)
+            tree.add(second)
+
+    print(graph, tree)
 
 
 if __name__ == "__main__":
