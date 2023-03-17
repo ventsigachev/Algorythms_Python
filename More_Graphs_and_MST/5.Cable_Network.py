@@ -13,6 +13,39 @@
         • On the third line, you will receive an integer – e – number of edges.
         • On the next e lines, you will receive edges in the following format: "{first} {second} {weight} {connected}".
 """
+from queue import PriorityQueue
+
+
+def prims_algorithm(graph, connected, budget):
+    pq = PriorityQueue()
+    budget_used = 0
+
+    for node in connected:
+        for edge in graph[node]:
+            pq.put(edge)
+
+    while not pq.empty():
+        min_edge = pq.get()
+        non_connected_node = None
+
+        if min_edge.f in connected and min_edge.s not in connected:
+            non_connected_node = min_edge.s
+        elif min_edge.f not in connected and min_edge.s in connected:
+            non_connected_node = min_edge.f
+
+        if not non_connected_node:
+            continue
+
+        if budget_used + min_edge.w > budget:
+            break
+
+        budget_used += min_edge.w
+        connected.add(non_connected_node)
+
+        for edge in graph[non_connected_node]:
+            pq.put(edge)
+
+    print(budget_used)
 
 
 def main():
@@ -32,7 +65,8 @@ def main():
 
     graph = []
     [graph.append([]) for _ in range(nodes)]
-    tree = set()
+
+    connected = set()
 
     for _ in range(edges):
         edge = input().split()
@@ -41,10 +75,10 @@ def main():
         graph[second].append(Edge(first, second, weight))
 
         if len(edge) == 4:
-            tree.add(first)
-            tree.add(second)
+            connected.add(first)
+            connected.add(second)
 
-    print(graph, tree)
+    prims_algorithm(graph, connected, budget)
 
 
 if __name__ == "__main__":
