@@ -11,6 +11,7 @@
         ▪ Recursive solution takes 48 315 633 steps
         ▪ Iterative or recursive (with memorization) takes ~36 steps
 """
+import time
 
 
 def calculate_fibonacci(n, hashing):
@@ -21,7 +22,7 @@ def calculate_fibonacci(n, hashing):
         return 1
 
     result = calculate_fibonacci(n - 1, hashing) + calculate_fibonacci(n - 2, hashing)
-    hashing[n] = result
+    # hashing[n] = result
 
     return result
 
@@ -30,7 +31,10 @@ def main():
     n_th_fibonacci_member = int(input())
     hash_table = {}
 
+    start = time.time()
     print(calculate_fibonacci(n_th_fibonacci_member, hash_table))
+    end = time.time()
+    print(end - start)
 
 
 if __name__ == "__main__":
@@ -42,5 +46,7 @@ if __name__ == "__main__":
 20  ---->   6765
 
 50  ---->   12586269025
+
+36  ---->   14930352,   time: with hashing - 0.00012612342834472656 sec., without hashing - 5.2672953605651855 sec.
 
 """
