@@ -18,11 +18,14 @@ def calculate_fibonacci(n, hashing):
     if n in hashing:
         return hashing[n]
 
+    if n == 0:
+        return 0
+
     if n <= 2:
         return 1
 
     result = calculate_fibonacci(n - 1, hashing) + calculate_fibonacci(n - 2, hashing)
-    # hashing[n] = result
+    hashing[n] = result
 
     return result
 
