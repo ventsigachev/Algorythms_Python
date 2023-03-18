@@ -13,8 +13,24 @@
 """
 
 
+def calculate_fibonacci(n, hashing):
+    if n in hashing:
+        return hashing[n]
+
+    if n <= 2:
+        return 1
+
+    result = calculate_fibonacci(n - 1, hashing) + calculate_fibonacci(n - 2, hashing)
+    hashing[n] = result
+
+    return result
+
+
 def main():
-    pass
+    n_th_fibonacci_member = int(input())
+    hash_table = {}
+
+    print(calculate_fibonacci(n_th_fibonacci_member, hash_table))
 
 
 if __name__ == "__main__":
@@ -23,8 +39,8 @@ if __name__ == "__main__":
 
 """
     Possible Inputs:
-20
+20  ---->   6765
 
-50
+50  ---->   12586269025
 
 """
