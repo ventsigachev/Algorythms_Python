@@ -1,6 +1,11 @@
 """
     Given a matrix of N by M cells filled with positive integers, find the path from top left to bottom right with the
-    highest sum of cells by moving only down or right.
+    highest sum of cells, by moving only down or right.
+    You are given a matrix of numbers
+        ▪ Find the path with the largest sum
+        ▪ Start → top left
+        ▪ End → bottom right
+        ▪ Move only right or down
 """
 
 
