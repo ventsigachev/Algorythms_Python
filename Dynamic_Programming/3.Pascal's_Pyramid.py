@@ -4,11 +4,21 @@
 """
 
 
-def binomial_coefficient(n, k):
+def binomial_coefficient(n, k, cache=None):
+    if cache is None:
+        cache = {}
+
+    key = f'{n}{k}'
+    if key in cache:
+        return cache[key]
+
     if n == 0 or k == 0 or n == k:
         return 1
 
-    return binomial_coefficient(n - 1, k - 1) + binomial_coefficient(n - 1, k)
+    result = binomial_coefficient(n - 1, k - 1, cache) + binomial_coefficient(n - 1, k, cache)
+    cache[key] = result
+
+    return result
 
 
 def main():
