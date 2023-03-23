@@ -20,6 +20,16 @@ def main():
         matrix.append([int(x) for x in input().split()])
         second_matrix.append([0] * cols)
 
+    second_matrix[0][0] = matrix[0][0]
+    for col in range(1, cols):
+        second_matrix[0][col] = second_matrix[0][col - 1] + matrix[0][col]
+
+    for row in range(1, rows):
+        second_matrix[row][0] = second_matrix[row - 1][0] + matrix[row][0]
+
+    for row in second_matrix:
+        print(row)
+
 
 if __name__ == "__main__":
     main()
