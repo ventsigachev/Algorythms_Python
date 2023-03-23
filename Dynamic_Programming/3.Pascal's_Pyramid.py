@@ -4,8 +4,16 @@
 """
 
 
+def binomial_coefficient(n, k):
+    if n == 0 or k == 0 or n == k:
+        return 1
+
+
 def main():
-    pass
+    n = int(input())
+    k = int(input())
+
+    binomial_coefficient(n, k)
 
 
 if __name__ == "__main__":
