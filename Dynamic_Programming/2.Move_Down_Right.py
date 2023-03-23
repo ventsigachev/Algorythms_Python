@@ -14,9 +14,11 @@ def main():
     cols = int(input())
 
     matrix = []
+    second_matrix = []
 
     for _ in range(rows):
         matrix.append([int(x) for x in input().split()])
+        second_matrix.append([0] * cols)
 
 
 if __name__ == "__main__":
