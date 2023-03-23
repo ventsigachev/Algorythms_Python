@@ -10,7 +10,13 @@
 
 
 def main():
-    pass
+    rows = int(input())
+    cols = int(input())
+
+    matrix = []
+
+    for _ in range(rows):
+        matrix.append([int(x) for x in input().split()])
 
 
 if __name__ == "__main__":
