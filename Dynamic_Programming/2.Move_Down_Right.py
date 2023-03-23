@@ -27,6 +27,10 @@ def main():
     for row in range(1, rows):
         second_matrix[row][0] = second_matrix[row - 1][0] + matrix[row][0]
 
+    for row in range(1, rows):
+        for col in range(1, cols):
+            second_matrix[row][col] = max(second_matrix[row - 1][col], second_matrix[row][col - 1]) + matrix[row][col]
+
     for row in second_matrix:
         print(row)
 
