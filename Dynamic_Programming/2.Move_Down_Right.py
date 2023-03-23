@@ -31,8 +31,29 @@ def main():
         for col in range(1, cols):
             second_matrix[row][col] = max(second_matrix[row - 1][col], second_matrix[row][col - 1]) + matrix[row][col]
 
-    for row in second_matrix:
-        print(row)
+    r = rows - 1
+    c = cols - 1
+    result = []
+
+    while r > 0 and c > 0:
+
+        result.append((r, c))
+
+        if second_matrix[r - 1][c] > second_matrix[r][c - 1]:
+            r -= 1
+        else:
+            c -= 1
+
+    while r > 0:
+        result.append((r, c))
+        r -= 1
+
+    while c > 0:
+        result.append((r, c))
+        c -= 1
+
+    result.append((0, 0))
+    print(*reversed(result))
 
 
 if __name__ == "__main__":
