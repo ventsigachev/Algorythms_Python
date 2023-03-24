@@ -21,7 +21,20 @@ def main():
         matrix[0][col] = col
     for row in range(1, len(f_str) + 1):
         matrix[row][0] = row
-        
+
+    r = len(f_str) + 1
+    c = len(s_str) + 1
+
+    for row in range(1, r):
+        for col in range(1, c):
+            if f_str[row - 1] == s_str[col - 1]:
+                matrix[row][col] = matrix[row - 1][col - 1]
+            else:
+                matrix[row][col] = min(matrix[row][col - 1], matrix[row - 1][col]) + 1
+
+    result = matrix[r - 1][c - 1]
+    print(f"The minimum amount of deletions and insertions are: {result}")
+
 
 if __name__ == "__main__":
     main()
