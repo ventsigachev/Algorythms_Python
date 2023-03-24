@@ -19,7 +19,9 @@ def main():
         matrix.append([0] * (len(s_str) + 1))
     for col in range(1, len(s_str) + 1):
         matrix[0][col] = col
-    
+    for row in range(1, len(f_str) + 1):
+        matrix[row][0] = row
+        
 
 if __name__ == "__main__":
     main()
