@@ -10,8 +10,16 @@
 
 
 def main():
-    pass
+    f_str = input()
+    s_str = input()
 
+    matrix = []
+
+    for _ in range(len(f_str) + 1):
+        matrix.append([0] * (len(s_str) + 1))
+    for col in range(1, len(s_str) + 1):
+        matrix[0][col] = col
+    
 
 if __name__ == "__main__":
     main()
