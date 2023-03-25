@@ -18,8 +18,17 @@ def main():
     matrix = []
     [matrix.append([0] * size) for _ in range(size)]
 
-    for row in matrix:
-        print(row)
+    for row in range(1, size):
+        for col in range(1, size):
+            if inputs[row - 1] == cables[col - 1]:
+                matrix[row][col] = matrix[row - 1][col - 1] + 1
+            else:
+                matrix[row][col] = max(matrix[row - 1][col], matrix[row][col - 1])
+
+    r = len(inputs)
+    result = matrix[r][r]
+
+    print(f"Maximum connected pairs: {result}")
 
 
 if __name__ == "__main__":
