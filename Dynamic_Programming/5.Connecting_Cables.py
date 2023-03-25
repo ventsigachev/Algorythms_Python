@@ -11,7 +11,15 @@
 
 
 def main():
-    pass
+    inputs = [int(c) for c in input().split()]
+    size = len(inputs) + 1
+    cables = [x for x in range(1, size)]
+
+    matrix = []
+    [matrix.append([0] * size) for _ in range(size)]
+
+    for row in matrix:
+        print(row)
 
 
 if __name__ == "__main__":
