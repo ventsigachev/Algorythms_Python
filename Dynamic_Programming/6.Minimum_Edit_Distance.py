@@ -33,6 +33,15 @@ def main():
     for _ in range(r):
         matrix.append([0] * c)
 
+    for col in range(1, c):
+        matrix[0][col] = matrix[0][col - 1] + insert_cost
+
+    for row in range(1, r):
+        matrix[row][0] = matrix[row - 1][0] + delete_cost
+
+    for row in matrix:
+        print(row)
+
 
 if __name__ == "__main__":
     main()
