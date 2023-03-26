@@ -39,8 +39,16 @@ def main():
     for row in range(1, r):
         matrix[row][0] = matrix[row - 1][0] + delete_cost
 
-    for row in matrix:
-        print(row)
+    for row in range(1, r):
+        for col in range(1, c):
+            if f_str[row - 1] == s_str[col - 1]:
+                matrix[row][col] = matrix[row - 1][col - 1]
+            else:
+                matrix[row][col] = min(matrix[row][col - 1] + insert_cost, matrix[row - 1][col] + delete_cost,
+                                       matrix[row - 1][col - 1] + replacement_cost)
+
+    result = matrix[r - 1][c - 1]
+    print(f"Minimal cost: {result}")
 
 
 if __name__ == "__main__":
