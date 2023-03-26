@@ -18,7 +18,20 @@
 
 
 def main():
-    pass
+    replacement_cost = int(input())
+    insert_cost = int(input())
+    delete_cost = int(input())
+
+    f_str = input()
+    s_str = input()
+
+    r = len(f_str) + 1
+    c = len(s_str) + 1
+
+    matrix = []
+
+    for _ in range(r):
+        matrix.append([0] * c)
 
 
 if __name__ == "__main__":
