@@ -6,6 +6,15 @@
 """
 
 
+def result(best_ind, sequence, previous):
+    list_ = []
+    while best_ind is not None:
+        list_.append(sequence[best_ind])
+        best_ind = previous[best_ind]
+
+    print(*reversed(list_))
+
+
 def main():
     sequence = input().split()
     size = [0] * len(sequence)
@@ -35,8 +44,7 @@ def main():
             best_size = c_size
             best_ind = i
 
-    print(best_ind)
-    print(best_size)
+    result(best_ind, sequence, previous)
 
 
 if __name__ == "__main__":
