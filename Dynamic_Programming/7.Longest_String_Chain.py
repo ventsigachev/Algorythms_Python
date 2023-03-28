@@ -10,7 +10,34 @@ def main():
     sequence = input().split()
     size = [0] * len(sequence)
     previous = [None] * len(sequence)
-    
+    best_size = 0
+    best_ind = 0
+
+    for i in range(len(sequence)):
+        word = sequence[i]
+        c_size = 1
+        parent = None
+
+        for p_i in range(i - 1, -1, -1):
+            p_word = sequence[p_i]
+
+            if len(p_word) >= len(word):
+                continue
+
+            if size[p_i] + 1 >= c_size:
+                c_size = size[p_i] + 1
+                parent = p_i
+
+        size[i] = c_size
+        previous[i] = parent
+
+        if c_size > best_size:
+            best_size = c_size
+            best_ind = i
+
+    print(best_ind)
+    print(best_size)
+
 
 if __name__ == "__main__":
     main()
