@@ -7,8 +7,10 @@
 
 
 def main():
-    pass
-
+    sequence = input().split()
+    size = [0] * len(sequence)
+    previous = [None] * len(sequence)
+    
 
 if __name__ == "__main__":
     main()
