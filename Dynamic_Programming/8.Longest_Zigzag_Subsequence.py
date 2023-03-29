@@ -13,7 +13,30 @@ def main():
     matrix = []
     [matrix.append([0] * len(nums)) for _ in range(2)]
     matrix[0][0] = matrix[1][0] = 1
+    result_size = 0
+    last_ind = 0
 
+    for current in range(1, len(nums)):
+        current_num = nums[current]
+        for prev in range(current - 1, -1, -1):
+            prev_num = nums[prev]
+
+            if current_num > prev_num and matrix[1][prev] + 1 >= matrix[0][current]:
+                matrix[0][current] = matrix[1][prev] + 1
+
+            if current_num < prev_num and matrix[0][prev] + 1 >= matrix[1][current]:
+                matrix[1][current] = matrix[0][prev] + 1
+
+        if matrix[0][current] > result_size:
+            result_size = matrix[0][current]
+            last_ind = current
+        if matrix[1][current] > result_size:
+            result_size = matrix[1][current]
+            last_ind = current
+
+    print(result_size)
+    print(last_ind)
+    
 
 if __name__ == "__main__":
     main()
