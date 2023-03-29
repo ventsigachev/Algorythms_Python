@@ -9,7 +9,10 @@
 
 
 def main():
-    pass
+    nums = [int(x) for x in input().split()]
+    matrix = []
+    [matrix.append([0] * len(nums)) for _ in range(2)]
+    matrix[0][0] = matrix[1][0] = 1
 
 
 if __name__ == "__main__":
