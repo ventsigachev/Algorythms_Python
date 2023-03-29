@@ -8,13 +8,26 @@
 """
 
 
+def result(col, row, parent, nums):
+    r = []
+    while col is not None:
+        r.append(nums[col])
+        col = parent[row][col]
+        row = 1 if row == 0 else 0
+    print(*reversed(r))
+
+
 def main():
     nums = [int(x) for x in input().split()]
     matrix = []
     [matrix.append([0] * len(nums)) for _ in range(2)]
     matrix[0][0] = matrix[1][0] = 1
     result_size = 0
-    last_ind = 0
+    row = 0
+    col = 0
+
+    parent = []
+    [parent.append([None] * len(nums)) for _ in range(2)]
 
     for current in range(1, len(nums)):
         current_num = nums[current]
@@ -23,20 +36,23 @@ def main():
 
             if current_num > prev_num and matrix[1][prev] + 1 >= matrix[0][current]:
                 matrix[0][current] = matrix[1][prev] + 1
+                parent[0][current] = prev
 
             if current_num < prev_num and matrix[0][prev] + 1 >= matrix[1][current]:
                 matrix[1][current] = matrix[0][prev] + 1
+                parent[1][current] = prev
 
         if matrix[0][current] > result_size:
             result_size = matrix[0][current]
-            last_ind = current
+            row = 0
+            col = current
         if matrix[1][current] > result_size:
             result_size = matrix[1][current]
-            last_ind = current
+            row = 1
+            col = current
 
-    print(result_size)
-    print(last_ind)
-    
+    result(col, row, parent, nums)
+
 
 if __name__ == "__main__":
     main()
