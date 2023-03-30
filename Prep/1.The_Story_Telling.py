@@ -16,7 +16,18 @@
 
 
 def main():
-    pass
+    graph = {}
+
+    while True:
+        line = input()
+        if line == "End":
+            break
+
+        node, children_str = [s.strip() for s in line.split("->")]
+        children = children_str.split()
+        graph[node] = children
+
+    print(graph)
 
 
 if __name__ == "__main__":
