@@ -15,6 +15,18 @@
 """
 
 
+def dfs(n, g, v):
+
+    if n in v:
+        return
+
+    v.add(n)
+    for c in g[n]:
+        dfs(c, g, v)
+
+    print(n)
+
+
 def main():
     graph = {}
 
@@ -27,7 +39,9 @@ def main():
         children = children_str.split()
         graph[node] = children
 
-    print(graph)
+    visited = set()
+    for node in graph:
+        dfs(node, graph, visited)
 
 
 if __name__ == "__main__":
