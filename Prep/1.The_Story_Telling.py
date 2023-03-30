@@ -30,7 +30,8 @@ def dfs(n, g, v, r):
 def printing_res(result):
 
     print("The story order is:")
-    print(*reversed(result))
+    # print(*reversed(result))
+    print(*result[::-1])
 
 
 def main():
