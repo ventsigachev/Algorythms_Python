@@ -17,6 +17,30 @@
 """
 
 
+def result_representation(m, f, s):
+    r = len(m) - 1
+    c = r
+    result = []
+
+    while r > 0 and c > 0:
+
+        if f[r - 1] == s[c - 1]:
+            result.append(f[r - 1])
+            r -= 1
+            c -= 1
+
+        elif m[r - 1][c] > m[r][c - 1]:
+            r -= 1
+
+        else:
+            c -= 1
+
+    result.reverse()
+
+    print(f"The correct timeline is { ' '.join(result) }")
+    print(f"The length of that timeline is { len(result) }")
+
+
 def main():
     first = input().split()
     second = input().split()
@@ -33,6 +57,8 @@ def main():
                 matrix[row][col] = matrix[row - 1][col - 1] + 1
             else:
                 matrix[row][col] = max(matrix[row - 1][col], matrix[row][col - 1])
+
+    result_representation(matrix, first, second)
 
 
 if __name__ == "__main__":
