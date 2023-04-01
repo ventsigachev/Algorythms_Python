@@ -18,7 +18,14 @@
 
 
 def main():
-    pass
+    first = input().split()
+    second = input().split()
+
+    rows = len(first) + 1
+    cols = len(second) + 1
+    matrix = []
+    for _ in range(rows):
+        matrix.append([0] * cols)
 
 
 if __name__ == "__main__":
