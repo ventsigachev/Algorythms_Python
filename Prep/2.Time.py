@@ -27,6 +27,13 @@ def main():
     for _ in range(rows):
         matrix.append([0] * cols)
 
+    for row in range(1, rows):
+        for col in range(1, cols):
+            if first[row - 1] == second[col - 1]:
+                matrix[row][col] = matrix[row - 1][col - 1] + 1
+            else:
+                matrix[row][col] = max(matrix[row - 1][col], matrix[row][col - 1])
+
 
 if __name__ == "__main__":
     main()
