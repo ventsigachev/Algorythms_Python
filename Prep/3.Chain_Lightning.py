@@ -29,7 +29,29 @@
 
 
 def main():
-    pass
+    class Edge:
+        def __init__(self, f, s, d):
+            self.f = f
+            self.s = s
+            self.d = d
+
+        def __gt__(self, other):
+            return self.d > other.d
+
+    nodes = int(input())
+    edges = int(input())
+    levin = int(input())
+
+    graph = {node: [] for node in range(nodes)}
+
+    for _ in range(edges):
+        first, second, distance = [int(x) for x in input().split()]
+        edge = Edge(first, second, distance)
+        graph[first].append(edge)
+        graph[second].append(edge)
+
+    for _ in range(levin):
+        node, damage = [int(x) for x in input().split()]
 
 
 if __name__ == "__main__":
