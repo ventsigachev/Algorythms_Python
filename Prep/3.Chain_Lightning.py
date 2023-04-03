@@ -29,25 +29,38 @@
 from queue import PriorityQueue
 
 
+def calc_damage(jumps, damage):
+    for _ in range(jumps):
+        damage //= 2
+
+    return damage
+
+
 def prim(node, damage, nodes_damages, graph):
     tree = {node}
+    nodes_damages[node] += damage
+    jumps = [0] * len(graph)
+
     pq = PriorityQueue()
     [pq.put(edge) for edge in graph[node]]
 
     while not pq.empty():
         min_edge = pq.get()
-        non_tree_node = -1
+        tree_node, non_tree_node = -1, -1
 
         if min_edge.f in tree and min_edge.s not in tree:
-            non_tree_node = min_edge.s
+            tree_node, non_tree_node = min_edge.f, min_edge.s
         elif min_edge.s in tree and min_edge.f not in tree:
-            non_tree_node = min_edge.f
+            non_tree_node, tree_node = min_edge.f, min_edge.s
 
         if non_tree_node == -1:
             continue
 
         tree.add(non_tree_node)
         [pq.put(edge) for edge in graph[non_tree_node]]
+
+        jumps[non_tree_node] = jumps[tree_node] + 1
+        nodes_damages[non_tree_node] += calc_damage(jumps[non_tree_node], damage)
 
 
 def main():
