@@ -63,6 +63,12 @@ def prim(node, damage, nodes_damages, graph):
         nodes_damages[non_tree_node] += calc_damage(jumps[non_tree_node], damage)
 
 
+def result(nodes_damages):
+    r = max(nodes_damages)
+
+    print(f"The condition of the most heavily damaged neighborhood is {r}")
+
+
 def main():
     class Edge:
         def __init__(self, f, s, d):
@@ -86,9 +92,12 @@ def main():
         graph[second].append(edge)
 
     nodes_damages = [0] * nodes
+
     for _ in range(levin):
         node, damage = [int(x) for x in input().split()]
         prim(node, damage, nodes_damages, graph)
+
+    result(nodes_damages)
 
 
 if __name__ == "__main__":
