@@ -26,6 +26,28 @@
         •   Distance between neighborhoods will be a unique integer in the range [0…100000]
         •   Lightning damage will be an integer in the range [0…1000]
 """
+from queue import PriorityQueue
+
+
+def prim(node, damage, nodes_damages, graph):
+    tree = {node}
+    pq = PriorityQueue()
+    [pq.put(edge) for edge in graph[node]]
+
+    while not pq.empty():
+        min_edge = pq.get()
+        non_tree_node = -1
+
+        if min_edge.f in tree and min_edge.s not in tree:
+            non_tree_node = min_edge.s
+        elif min_edge.s in tree and min_edge.f not in tree:
+            non_tree_node = min_edge.f
+
+        if non_tree_node == -1:
+            continue
+
+        tree.add(non_tree_node)
+        [pq.put(edge) for edge in graph[non_tree_node]]
 
 
 def main():
@@ -50,8 +72,10 @@ def main():
         graph[first].append(edge)
         graph[second].append(edge)
 
+    nodes_damages = [0] * nodes
     for _ in range(levin):
         node, damage = [int(x) for x in input().split()]
+        prim(node, damage, nodes_damages, graph)
 
 
 if __name__ == "__main__":
